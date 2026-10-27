@@ -112,5 +112,26 @@ public class ReservasController {
         lblRechazadas.setText(String.valueOf(reservas.getRechazadas()));
     }
 
+    private void reiniciarInterfaz() {
+        pbAgente1.setProgress(0);
+        pbAgente2.setProgress(0);
+        pbAgente3.setProgress(0);
+
+        lblAgente1.setText("Agente 1");
+        lblAgente2.setText("Agente 2");
+        lblAgente3.setText("Agente 3");
+
+        lblDisponibles.setText(String.valueOf(Reservas.TOTAL_ENTRADAS));
+        lblConfirmadas.setText("0");
+        lblRechazadas.setText("0");
+        txtRegistro.clear();
+    }
+
+    @FXML
+    private void limpiarRegistro() {
+        if (!enEjecucion) {
+            reiniciarInterfaz();
+        }
+    }
 
 }
