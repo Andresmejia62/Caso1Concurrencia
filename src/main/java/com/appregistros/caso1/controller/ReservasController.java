@@ -73,5 +73,39 @@ public class ReservasController {
         supervisor.start();
     }
 
+    private void procesarReservas(String agente, ProgressBar pbAgente, Label lblAgente) {
+        int ok = 0;
+        int no = 0;
+        for (int i = 1; i <= SOLICITUDES; i++) {
+            try {
+                Thread.sleep(ThreadLocalRandom.current().nextInt(300, 900));
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return;
+            }
+
+            boolean confirmada = reservas.reservar();   // comprobar + descontar atómico
+            if (confirmada) {
+                ok++;
+            } else {
+                no++;
+            }
+
+            int solicitudActual = i;
+            int confirmadasAgente = ok;
+            int rechazadasAgente = no;
+            double progreso = i / (double) SOLICITUDES;
+
+            Platform.runLater(() -> {
+                pbAgente.setProgress(progreso);
+                lblAgente.setText(agente + ": " + confirmadasAgente + " confirmadas, "
+                        + rechazadasAgente + " rechazadas");
+                txtRegistro.appendText(agente + " solicitud " + solicitudActual + " -> "
+                        + (confirmada ? "CONFIRMADA" : "RECHAZADA") + "\n");
+                actualizarTotales();
+            });
+        }
+    }
+
 
 }
