@@ -106,6 +106,11 @@ public class ReservasController {
             });
         }
     }
+    private void actualizarTotales() {
+        lblDisponibles.setText(String.valueOf(reservas.getDisponibles()));
+        lblConfirmadas.setText(String.valueOf(reservas.getConfirmadas()));
+        lblRechazadas.setText(String.valueOf(reservas.getRechazadas()));
+    }
 
 
 }
