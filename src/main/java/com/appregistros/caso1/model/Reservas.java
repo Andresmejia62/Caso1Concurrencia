@@ -3,7 +3,7 @@ package com.appregistros.caso1.model;
 import javafx.fxml.FXML;
 
 public class Reservas {
-    public static final int TOTAL_ENTRADAS = 30;
+    public static final int TOTAL_ENTRADAS = 20;
 
     private int cantidadReservas = 0;
     private int totalRecaudado = 0;
