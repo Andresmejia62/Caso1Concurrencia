@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10" alignment="TOP_CENTER" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.appregistros.caso1.controller.ReservasController">
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
+
+    <HBox spacing="30" alignment="CENTER">
+        <VBox alignment="CENTER">
+            <Label text="Disponibles"/>
+            <Label fx:id="lblDisponibles" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+        </VBox>
+        <VBox alignment="CENTER">
+            <Label text="Confirmadas"/>
+            <Label fx:id="lblConfirmadas" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+        </VBox>
+        <VBox alignment="CENTER">
+            <Label text="Rechazadas"/>
+            <Label fx:id="lblRechazadas" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+        </VBox>
+    </HBox>
+
+    <Label fx:id="lblAgente1"/>
+    <ProgressBar fx:id="pbAgente1" prefWidth="400"/>
+    <Label fx:id="lblAgente2"/>
+    <ProgressBar fx:id="pbAgente2" prefWidth="400"/>
+    <Label fx:id="lblAgente3"/>
+    <ProgressBar fx:id="pbAgente3" prefWidth="400"/>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="btnIniciar" text="Iniciar reservas" onAction="#iniciarReservas"/>
+        <Button fx:id="btnLimpiar" text="Limpiar" onAction="#limpiarRegistro"/>
+    </HBox>
+
+    <TextArea fx:id="txtRegistro" editable="false" prefRowCount="12"/>
+</VBox>
