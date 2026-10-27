@@ -1,0 +1,12 @@
+Descripción
+La aplicación JavaFX simula la reserva de 20 entradas atendida por tres agentes simultáneos, cada uno con 10 solicitudes de una entrada; las solicitudes que no se pueden atender se rechazan.
+Cada agente corre en su propio hilo en segundo plano. La ventana muestra entradas disponibles, reservas confirmadas y solicitudes rechazadas, una barra de progreso por agente y un registro en vivo, y sigue respondiendo durante la ejecución. El botón Iniciar se deshabilita mientras corre y se habilita al terminar los tres agentes.
+Concurrencia y sincronización
+El inventario es el único recurso compartido, y se protege con synchronized para que dos agentes nunca descuenten la misma entrada.
+• Sección crítica: reservar() comprueba si quedan entradas y descuenta una dentro del mismo método sincronizado. Si fueran dos pasos separados, dos agentes podrían ver "queda 1" a la vez y dejar el inventario en -1.
+• Lecturas protegidas: los getters de disponibles, confirmadas y rechazadas también son synchronized.
+• Reinicio: reiniciar() restablece los tres contadores y se llama al comenzar cada simulación.
+• Inicio duplicado: una bandera enEjecucion y el botón deshabilitado impiden lanzar agentes adicionales mientras hay una ejecución en curso.
+• Fin de la ejecución: un hilo supervisor espera a los tres agentes con join y entonces habilita de nuevo el botón.
+• Hilo de JavaFX: los agentes nunca modifican controles; todo cambio de la interfaz pasa por Platform.runLater.
+• Orden entre agentes: no es fijo; qué agente obtiene cada entrada cambia entre corridas, pero los totales no.
